@@ -89,4 +89,13 @@ for i in "${*:2}"; do
     outcommand="$outcommand $i"
 done
 
-eval $outcommand
+echo "Command to be executed: $outcommand"
+read -p "Do you want to execute the command? [y/n]: " allow
+if [ "$allow" == "y" ]; then
+  eval $outcommand
+  exit
+else
+  echo "Command not executed"
+  echo "Exiting"
+  exit
+fi
