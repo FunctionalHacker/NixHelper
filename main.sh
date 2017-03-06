@@ -39,11 +39,11 @@ elif [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
         echo "here: http://nixhelper.reekynet.com"
         echo " "
         echo "Usage: nixhelper <alias/command> <parameters>"
-	echo "Commands:"
-	echo "   nixhelper {-h --help}    Shows this help"
-	echo "   nixhelper {-u --update}  Updates Nixhelper"
-	echo "   nixhelper {-v --version} Shows the current version"
-	echo "   nixhelper {-r --remove}  Uninstalls Nixhelper"
+      	echo "Commands:"
+	      echo "   nixhelper {-h --help}    Shows this help"
+	      echo "   nixhelper {-u --update}  Updates Nixhelper"
+	      echo "   nixhelper {-v --version} Shows the current version"
+	      echo "   nixhelper {-r --remove}  Uninstalls Nixhelper"
         exit
 
 elif [ "$1" == "code" ] || [ "$1" == "home" ]; then
@@ -89,13 +89,4 @@ for i in "${*:2}"; do
     outcommand="$outcommand $i"
 done
 
-echo "Command to be executed: $outcommand"
-read -p "Do you want to execute the command? [y/n]: " allow
-if [ "$allow" == "y" ]; then
-  eval $outcommand
-  exit
-else
-  echo "Command not executed"
-  echo "Exiting"
-  exit
-fi
+eval $outcommand
