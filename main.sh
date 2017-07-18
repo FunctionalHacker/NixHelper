@@ -15,7 +15,7 @@ confirmInstall=" "
 
 function install (){
 	if [ -f $installPath ]; then
-		eval "rm $installPath"
+		eval "sudo rm $installPath"
 	fi
 
 	if [ ! -d "$cache" ]; then
