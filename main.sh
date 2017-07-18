@@ -2,9 +2,11 @@
 
 version="1.0"
 
+host="https://nixhelper.reekynet.com"
+
 cache="$HOME/.cache/nixhelper"
 commandFile="$cache/$1"
-url="https://nixhelper.reekynet.com/$1"
+url="$host/$1"
 code="https://nixhelper.reekynet.com/code"
 installPath="/usr/local/bin/nixhelper"
 wget="$(command -v wget)"
@@ -28,37 +30,48 @@ function manage (){
 	case $action in
 		"install")
 			echo "Are you sure you want to install NixHelper?"
-			echo "This action will require administrative rights."
+			echo "This action will require administrative rights"
 			read -p "[y/n]: " confirmInstall
+			printf "\n"
+			
 			if [ $confirmInstall == "y" ]; then
 				install
 				echo "NixHelper is now installed"
 				echo -e "Use \e[32mnixhelper -h \e[39mto get started"
+			else
+				echo "Installation cancelled"
 			fi
 			exit
 			;;
 		"update")
 			echo "Are you sure you want to update NixHelper?"
-			echo "This action will require administrative rights."
+			echo "This action will require administrative rights"
 			read -p "[y/n]: " confirmInstall 
+			printf "\n"
+			
 			if [ $confirmInstall == "y" ]; then
 				install
+				printf "\n"
 				echo "NixHelper updated to the latest version"
 				echo -e "Use \e[32mnixhelper -h \e[39mto see which version is installed"
+			else
+				echo "Updating cancelled"
 			fi
 			exit
 			;;
 		"remove")
 			echo "Are you sure you want to remove NixHelper from your computer?"
-			echo "This action will require administrative rights."
+			echo "This action will require administrative rights"
 			read -p "[y/n]: " confirmInstall
+			printf "\n"
+			
 			if [ $confirmInstall == "y" ]; then
 				eval "sudo rm $installPath; sudo rm -r $cache"
-				echo "NixHelper is now uninstalled."
+				echo "NixHelper is now removed"
 				echo "Visit https://nixhelper.reekynet.com if you want to install"
 				echo "it again"
 			else
-				echo "Cancelling removal of NixHelper."
+				echo "Cancelling removal of NixHelper"
 			fi
 			exit
 			;;
@@ -67,6 +80,7 @@ function manage (){
 			echo "This means that you need to verify every command again"
 			echo "that you asked NixHelper to remember as trusted"
 			read -p "[y/n]: " clearVerify
+			printf "\n"
 
 			if [ $clearVerify == "y" ]; then
 				eval "rm $cache/*"
