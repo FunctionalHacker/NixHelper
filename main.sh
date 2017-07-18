@@ -44,7 +44,7 @@ function manage (){
 			if [ $confirmInstall == "y" ]; then
 				install
 				echo "NixHelper updated to the latest version"
-				echo -e "Use \e[32mnnixhelper -h \e[39mto see which version is installed"
+				echo -e "Use \e[32mnixhelper -h \e[39mto see which version is installed"
 			fi
 			exit
 			;;
@@ -98,9 +98,11 @@ function parseCommand (){
 function verifyCommand (){
 	echo "Are you sure you want to execute this command?"
 	echo -e "The command behind the alias \e[31m$1\e[39m is:"
+	printf "\n"
 	eval "$downloadCommand"
 	parseCommand "$@"
 	echo -e "\e[31m$command\e[39m"
+	printf "\n"
 	read -p "[y/n/a] (yes/no/always): " confirmCommand
 
 	case $confirmCommand in
@@ -181,5 +183,7 @@ if [ $? -ne 0 ]; then
 	echo -e "\e[31merror: \e[39mcommand not found (-h for help)"
 	exit
 fi
+
+printf "\n\n"
 
 eval $command
